@@ -70,23 +70,69 @@ const move = setInterval(()=>{
 
 // text appearing
 const sections = Array.from(document.querySelectorAll('section'));
+const tempSections = [...sections];
+console.log(sections);
 const sectionsY = [];
 
-sections.forEach(element => {
-    if(element.offsetTop + 300 > window.pageYOffset + window.innerHeight){
-        sectionsY.push(element.offsetTop);
-        document.querySelector('.' + element.className.split(/\s+/)[0]).classList.remove('appear');
+tempSections.forEach(element => {
+    console.log(element)
+    if(element.offsetTop > window.pageYOffset + window.innerHeight - 300){
+        sectionsY.push(element.offsetTop - 100);
+    }
+    else{
+        console.log(element)
+        element.classList.add('appear');
+        sections.shift();
     }
 });
 
 
 window.addEventListener('scroll', ()=>{
-        if(sectionsY.some( (elem, index, array) => {
-            return (elem < window.pageYOffset + 175)
+        if(sectionsY.some( async (elem, index, array) => {
+            return (elem < window.pageYOffset + innerHeight)
         }) === true)
         {
-            document.querySelector('.' + sections[0].className.split(/\s+/)[0]).classList.add('appear');
+            console.log(window.pageYOffset + innerHeight);
+            sections[0].classList.add('appear');
             sectionsY.shift();
             sections.shift();
         }
 });
+
+function increaseImgOpacity(image , opacity){
+     if (opacity < 1){
+            opacity += .05;
+            setTimeout(()=>{increaseImgOpacity(image, opacity)}, 50);
+        }
+    image.style.opacity = opacity;
+};
+
+function decreaseImgOpacity(image , opacity){
+    if (opacity > 0){
+            opacity -= .05;
+            setTimeout(()=>{decreaseImgOpacity(image , opacity)}, 50);
+        }
+    image.style.opacity = opacity;
+};
+
+// query(zdjecia) -> img[i] decrease && img[i + 1] increase
+const allSliderImg = document.querySelectorAll('.slider-img');
+
+let i=0;
+let j=1;
+const slider = setInterval(()=>{
+    decreaseImgOpacity(allSliderImg[i] , 1);
+    increaseImgOpacity(allSliderImg[j] , 0);
+    if(j == allSliderImg.length - 1){
+        j = 0;
+    }
+    else{
+        j++;
+    }
+    if(i == allSliderImg.length - 1){
+        i = 0;
+    }
+    else{
+        i++;
+    }
+},5000);

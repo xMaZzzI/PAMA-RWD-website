@@ -11,7 +11,13 @@ hamburgerBtn.addEventListener("click", ()=>{
 //scrolling to sections
 function smoothScroll(target, time){
     let destination = document.querySelector(target);
-    let targetPos = destination.offsetTop - 50;
+    let targetPos = 0
+    if(window.innerWidth < 768){
+        targetPos = destination.offsetTop - 50;
+    }
+    else{
+        targetPos = destination.offsetTop - 100;
+    }
     let currentPos = window.pageYOffset;
     let distance = targetPos - currentPos;
     let startTime = null;
@@ -39,9 +45,11 @@ function smoothScroll(target, time){
 const navBtns = document.querySelectorAll('.nav-btn')
 for (let i = 0; i < navBtns.length; i++){
     navBtns[i].addEventListener("click", ()=>{
-        let allSections = document.querySelectorAll('section')
-        let target = allSections[i].className.split(/\s+/)
-        document.querySelector('.top-bar').classList.toggle('open');
+        let allSections = document.querySelectorAll('section');
+        let target = allSections[i].className.split(/\s+/);
+        if(window.innerWidth < 768){
+            document.querySelector('.top-bar').classList.toggle('open');
+        }
         smoothScroll('.' + target, 1000);
     })
 }
@@ -71,16 +79,13 @@ const move = setInterval(()=>{
 // text appearing
 const sections = Array.from(document.querySelectorAll('section'));
 const tempSections = [...sections];
-console.log(sections);
 const sectionsY = [];
 
 tempSections.forEach(element => {
-    console.log(element)
     if(element.offsetTop > window.pageYOffset + window.innerHeight - 300){
-        sectionsY.push(element.offsetTop - 100);
+        sectionsY.push(element.offsetTop + 230);
     }
     else{
-        console.log(element)
         element.classList.add('appear');
         sections.shift();
     }
@@ -88,14 +93,22 @@ tempSections.forEach(element => {
 
 
 window.addEventListener('scroll', ()=>{
-        if(sectionsY.some( async (elem, index, array) => {
+    let bar = document.querySelector('.top-bar');
+        if(sectionsY.some( (elem, index, array) => {
             return (elem < window.pageYOffset + innerHeight)
         }) === true)
         {
+            console.log(sectionsY)
             console.log(window.pageYOffset + innerHeight);
             sections[0].classList.add('appear');
             sectionsY.shift();
             sections.shift();
+        }
+        if(innerWidth > 768 && window.pageYOffset > 60){
+            bar.classList.add('scrolled');
+        }
+        if(window.pageYOffset < 60 && innerWidth > 768){
+            bar.classList.remove('scrolled');
         }
 });
 

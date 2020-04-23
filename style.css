@@ -308,30 +308,68 @@ footer{
     color: #ffffff;
 }
 
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 768px){
     body{
-        font-size: 24px;
+        font-size: 18px;
     }
-    header{
-        height: calc(100vh - 100px);
-    }
-    section{
-        height: calc(100vh - 75px);
-    }
+
     .headers::after{
-        height: 4px;
+        height: 3px;
+    }
+
+    .top-bar.open{
+        height: 240px;
+    }
+    .hero-image {
+        min-height: 400px;
+    }
+
+    .hero-image .hero-text{
+        transform: translateX(-50%) translateY(50%);
+    }
+
+    .basic-section{
+        margin: 0 80px;
+        padding: 40px 0 0 0;
+    }
+
+    .basic-section .section-img{
+        max-height: 260px;
+        margin-bottom: 20px;
     }
 
     .basic-section .sections-headers{
-        height: 48px;
+        height: 36px;
     }
+
+    .top-bar .page-navigation li{
+        font-size: 18px;
+    }
+
+    .hero-image .scroll-icon .scroll-icon-svg{
+        width: 36px;
+        height: 36px;
+    }
+
+}
+
+@media screen and (min-width: 992px){
+
+    header{
+        height: calc(100vh - 60px);
+    }
+    section{
+        height: calc(100vh - 60px);
+    }
+
+
 
     .top-bar{
         background-color: transparent;
         box-shadow: none;
         position: relative;
         top: 50px;
-        height: 75px;
+        height: 60px;
     }
 
     .top-bar.scrolled{
@@ -342,25 +380,23 @@ footer{
     }
 
     .top-bar .logo{
-        max-height: 70px;
+        max-height: 50px;
         left: 115px;
         top: 50%;
     }
 
     .top-bar .page-navigation{
         visibility: visible;
+        height: 60px;
         opacity: 1;
         display: flex;
         justify-content: flex-end;
-        position: relative;
-        top: 50%;
-        transform: translateY(50%);
+        align-items: center;
         margin: 0 70px 0 0;
     }
 
     .top-bar .page-navigation li{
         width: auto;
-        font-size: 24px;
         margin-right: 45px;
         color: #ffffff;
         position: relative;
@@ -384,12 +420,12 @@ footer{
 
     .hero-image{
         height: calc(100vh + 5px);
-        top: -100px;
+        top: -75px;
     }
 
     .hero-image .scroll-icon .scroll-icon-svg{
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
     }
 
     .hero-image .scroll-icon.move{
@@ -410,12 +446,12 @@ footer{
     .basic-section{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: calc(20vh - 75px) 60px 50vh calc(30vh - 60px);
+        grid-template-rows: calc(20vh - 60px) 60px 50vh calc(30vh - 60px);
         justify-items: left;
         padding: 0;
         margin: 0 115px;
         position: relative;
-        top: 75px;
+        top: 60px;
     }
 
     .basic-section .sections-headers{
@@ -429,7 +465,7 @@ footer{
     }
     
     .basic-section .section-img{
-        margin-top: 75px;
+        margin-top: 60px;
         max-width: none;
         max-height: 70vh;
         align-self: start;
@@ -526,6 +562,30 @@ footer{
     -ms-transition: opacity 1s ease, transform 1.5s ease;
     transition: opacity 1s ease, transform 1.5s ease;
     transform: translateY(100px);
+    }
+
+}
+
+@media screen and (min-width: 1200px){
+    body{
+        font-size: 24px;
+    }
+
+    .headers::after{
+        height: 4px;
+    }
+
+    .basic-section .sections-headers{
+        height: 48px;
+    }
+
+    .top-bar .page-navigation li{
+        font-size: 24px;
+    }
+
+    .hero-image .scroll-icon .scroll-icon-svg{
+        width: 48px;
+        height: 48px;
     }
 
 }

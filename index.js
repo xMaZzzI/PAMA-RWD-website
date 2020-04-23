@@ -47,7 +47,7 @@ for (let i = 0; i < navBtns.length; i++){
     navBtns[i].addEventListener("click", ()=>{
         let allSections = document.querySelectorAll('section');
         let target = allSections[i].className.split(/\s+/);
-        if(window.innerWidth < 768){
+        if(window.innerWidth < 992){
             document.querySelector('.top-bar').classList.toggle('open');
         }
         smoothScroll('.' + target, 1000);
@@ -104,10 +104,10 @@ window.addEventListener('scroll', ()=>{
             sectionsY.shift();
             sections.shift();
         }
-        if(innerWidth > 768 && window.pageYOffset > 60){
+        if(innerWidth > 992 && window.pageYOffset > 60){
             bar.classList.add('scrolled');
         }
-        if(window.pageYOffset < 60 && innerWidth > 768){
+        if(window.pageYOffset < 992 && innerWidth > 768){
             bar.classList.remove('scrolled');
         }
 });

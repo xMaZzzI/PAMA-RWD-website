@@ -12,7 +12,7 @@ hamburgerBtn.addEventListener("click", ()=>{
 function smoothScroll(target, time){
     let destination = document.querySelector(target);
     let targetPos = 0
-    if(window.innerWidth < 768){
+    if(window.innerWidth < 992){
         targetPos = destination.offsetTop - 50;
     }
     else{
@@ -107,7 +107,7 @@ window.addEventListener('scroll', ()=>{
         if(innerWidth > 992 && window.pageYOffset > 60){
             bar.classList.add('scrolled');
         }
-        if(window.pageYOffset < 992 && innerWidth > 768){
+        if(window.pageYOffset < 60 && innerWidth > 992){
             bar.classList.remove('scrolled');
         }
 });
